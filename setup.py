@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="django-marketing-urls",
-    version="1.0.0",
+    version="1.0.1",
     author="Laonan",
     author_email="hello@laonan.net",
     description="An app to generate marketing urls for Django projects. ",

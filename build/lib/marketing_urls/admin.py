@@ -4,8 +4,9 @@ from .models import MarketingUrl, VisitorLog
 
 @admin.register(MarketingUrl)
 class MarketingUrlAdmin(admin.ModelAdmin):
-    list_display = ('original_url', 'marketing_url_key', 'end_time')
+    list_display = ('original_url', 'marketing_url', 'end_time')
     search_fields = ('original_url', 'marketing_url_key')
+    readonly_fields = ('marketing_url', )
 
 
 @admin.register(VisitorLog)

@@ -33,18 +33,36 @@ An app to generate marketing urls for Django projects. It allows you to create m
         ...
     ]
 
+### in urls.py
+
+    urlpatterns = [
+        ...
+        path('marketing/', include('marketing_urls.urls')),
+        ...
+    ]
     
 ## Usage
     
-    from urltoken.encoder import UrlTokenEncoder
-    
-    encoder =  UrlTokenEncoder('yoursecretkey')
-    token = encoder.encode('example@domain.com')
-    print(token)
+### Create a marketing url
 
-    decoded = encoder.decode(token)
-    print(decoded)
+    from marketing_urls.models import MarketingUrl
+    
+    MarketingUrl.objects.create(original_url='https://example.com')
+   
+
+### Get the marketing url
+    
+        m_url = MarketingUrl.objects.get(original_url='https://example.com')
+        print(m_url.marketing_url)
+        
+        # if you want to add extra information to the url
+        from urltoken.encoder import UrlTokenEncoder
+        
+        token_encoder = UrlTokenEncoder('secretkey') # secretkey could be set in OS environment variable from 'URL_TOKEN_SECRET', or just leave it is None
+        url_token = token_encoder.encode('my_extra_info_here')
+        url_with_extra_info = m_url.marketing_url + '?t=' + url_token
+        print(url_with_extra_info)
 
 
 ## Issues
-https://github.com/laonan/urltoken/issues
+https://github.com/laonan/django-marketing-url/issues
