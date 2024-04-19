@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: django-marketing-urls
+Version: 1.0.0
+Summary: An app to generate marketing urls for Django projects. 
+Home-page: https://github.com/laonan/django-marketing-urls
+Author: Laonan
+Author-email: hello@laonan.net
+Project-URL: Bug Tracker, https://github.com/laonan/django-marketing-urls/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=2.0.13
+Requires-Dist: urltoken>=1.0.0
+
+# Django Marketing Urls
+
+## Description
+An app to generate marketing urls for Django projects. It allows you to create marketing urls with a unique token that can be used to track the source of the traffic.
+
+
+## Installation
+   
+    pip install django-marketing-urls
+
+### in settings.py
+
+    INSTALLED_APPS = [
+        ...
+        'marketing_urls',
+        ...
+    ]
+
+    
+## Usage
+    
+    from urltoken.encoder import UrlTokenEncoder
+    
+    encoder =  UrlTokenEncoder('yoursecretkey')
+    token = encoder.encode('example@domain.com')
+    print(token)
+
+    decoded = encoder.decode(token)
+    print(decoded)
+
+
+## Issues
+https://github.com/laonan/urltoken/issues
